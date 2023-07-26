@@ -4,5 +4,14 @@
   "azureFunctions.pythonVenv": ".venv",
   "azureFunctions.projectLanguage": "Python",
   "azureFunctions.projectRuntime": "~4",
-  "debug.internalConsoleOptions": "neverOpen"
+  "debug.internalConsoleOptions": "neverOpen",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+  },
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length", "120"],
+  "python.linting.enabled": true,
+  "python.linting.flake8Args": [
+    "--max-line-length=120"
+  ]
 }
