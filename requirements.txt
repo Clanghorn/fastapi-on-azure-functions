@@ -6,3 +6,4 @@ azure-functions>=1.12.0
 fastapi
 smartsheet-python-sdk
 python-dotenv
+arcgis
