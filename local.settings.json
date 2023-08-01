@@ -3,6 +3,10 @@
   "Values": {
     "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "python",
-    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing"
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "DEVMO_PORTAL": "https://dev-gis.yondrgroup.com/portal/",
+    "DEVMO_PORTAL_USERNAME": "portaladmin",
+    "DEVMO_PORTAL_PASSWORD": "textiles.Busy.drift6",
+    "AzureWebJobs.HttpTrigger1.Disabled": "true"
   }
 }

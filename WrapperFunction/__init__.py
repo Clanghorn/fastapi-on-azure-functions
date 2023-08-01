@@ -1,3 +1,4 @@
+import logging
 import azure.functions as func
 import fastapi
 
@@ -12,6 +13,13 @@ async def index():
     return {
         "info": "Try /hello/Shivani for parameterized route.",
     }
+
+
+@app.get("/getGIS")
+async def getGIS():
+    gis = gismo.connectToGIS()
+
+    return {"Successfully logged in as": gis.properties.user.username}
 
 
 @app.get("/getSiteInfo/{siteID}")

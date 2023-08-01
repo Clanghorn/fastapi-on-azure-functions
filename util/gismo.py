@@ -1,19 +1,23 @@
+import logging
 import os
 
 from arcgis.features import FeatureLayer
 from arcgis.gis import GIS
-from dotenv import load_dotenv
 
-load_dotenv()
+# from dotenv import load_dotenv
 
-PORTAL = os.environ["PORTAL"]
-PORTAL_USERNAME = os.environ["PORTAL_USERNAME"]
-PORTAL_PASSWORD = os.environ["PORTAL_PASSWORD"]
+# load_dotenv()
+
+PORTAL = os.environ["DEVMO_PORTAL"]
+PORTAL_USERNAME = os.environ["DEVMO_PORTAL_USERNAME"]
+PORTAL_PASSWORD = os.environ["DEVMO_PORTAL_PASSWORD"]
 
 
 def connectToGIS():
+    logging.info("Starting")
     gis = GIS(PORTAL, username=PORTAL_USERNAME, password=PORTAL_PASSWORD)
-    print("Successfully logged in as: " + gis.properties.user.username)
+    logging.info("Successfully logged in as: " + gis.properties.user.username)
+    return gis
 
 
 def queryFields(lyr_url, siteID, fields="GlobalID,SiteID,Region,DevManager"):
