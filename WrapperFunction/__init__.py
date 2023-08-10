@@ -14,7 +14,6 @@ async def index():
         "info": "Try /hello/Shivani for parameterized route.",
     }
 
-
 @app.get("/getGIS")
 async def getGIS():
     gis = gismo.connectToGIS()

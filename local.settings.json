@@ -7,6 +7,8 @@
     "DEVMO_PORTAL": "https://dev-gis.yondrgroup.com/portal/",
     "DEVMO_PORTAL_USERNAME": "portaladmin",
     "DEVMO_PORTAL_PASSWORD": "textiles.Busy.drift6",
-    "AzureWebJobs.HttpTrigger1.Disabled": "true"
+    "SMARTSHEET_ACCESS_TOKEN": "WGCHUokL7LMAYmVhn6hiGcnyPLRmcB4jbPsLB",
+    "DEV_MANAGER_WORKBOOK_ID": "1947854981517188",
+    "DEV_MANAGER_WORKSPACE": "5984333325461380"
   }
 }

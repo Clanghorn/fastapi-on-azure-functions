@@ -2,9 +2,8 @@
 # The Python Worker is managed by Azure Functions platform
 # Manually managing azure-functions-worker may cause unexpected issues
 
-azure-functions>=1.12.0
+azure-functions
 fastapi
 arcgis==2.0.1
-# urllib3==1.26.15 # Fix this version to avoid TypeError: __init__() got an unexpected keyword argument 'method_whitelist'
+urllib3==1.26.15 # Fix this version to avoid TypeError: __init__() got an unexpected keyword argument 'method_whitelist'
 smartsheet-python-sdk
-python-dotenv
