@@ -35,6 +35,10 @@ def queryFields(lyr_url, siteID, fields="GlobalID,SiteID,Region,DevManager"):
         return {"msg": "No Data"}
 
 
+def addSSlinkToTable():
+    pass
+
+
 # TODO
 # Add link to Site Links table SiteGUID/LinkLabel/URL/Source
 if __name__ == "__main__":
