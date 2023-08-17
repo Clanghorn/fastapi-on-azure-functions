@@ -1,8 +1,7 @@
 import os
 
 import smartsheet
-
-from util.gismo import addSSlinkToTable
+from arcgis.features import Table
 
 # from dotenv import load_dotenv
 
@@ -17,6 +16,7 @@ if "SMARTSHEET_ACCESS_TOKEN" not in os.environ:
 ACCESS_TOKEN = os.environ["SMARTSHEET_ACCESS_TOKEN"]
 WORKBOOK_ID = int(os.environ["DEV_MANAGER_WORKBOOK_ID"])
 DEV_MANAGER_WORKSPACE = int(os.environ["DEV_MANAGER_WORKSPACE"])
+SITELINKS_URL = os.environ["SITELINKS_URL"]
 
 # The API identifies columns by Id, but it's more convenient to refer to column names. Store a map here
 column_map = {}
@@ -57,6 +57,27 @@ def setupSheet(smart, result, region, siteID):
     new_row.id = sheet.rows[1].id
     new_row.cells.append(new_cell)
     smart.Sheets.update_rows(sheet.id, new_row)
+
+
+def addSSlinkToTable(SiteGUID, SiteID, URL):
+    try:
+        feature_layer = Table(SITELINKS_URL)
+        # Create a new feature
+        new_feature = {
+            "attributes": {
+                "SiteGUID": SiteGUID,
+                "SiteID": SiteID,
+                "LinkLabel": "Dev Manager Workbook",
+                "URL": URL,
+            }
+        }
+        # Add the new feature to the feature layer
+        msg = feature_layer.edit_features(adds=[new_feature])
+        print(msg["addResults"][0])
+        print("Site Link Added for Dev Manager Workbook")
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return {"msg": "No Data"}
 
 
 def createSmartSheet(region, siteGUID, siteID):
