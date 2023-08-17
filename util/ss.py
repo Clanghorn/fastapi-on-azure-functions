@@ -2,6 +2,8 @@ import os
 
 import smartsheet
 
+from util.gismo import addSSlinkToTable
+
 # from dotenv import load_dotenv
 
 # load_dotenv()
@@ -57,7 +59,7 @@ def setupSheet(smart, result, region, siteID):
     smart.Sheets.update_rows(sheet.id, new_row)
 
 
-def createSmartSheet(region, siteID):
+def createSmartSheet(region, siteGUID, siteID):
     # Initialize client. Uses the API token in the environment variable "SMARTSHEET_ACCESS_TOKEN"
     smart = smartsheet.Smartsheet(ACCESS_TOKEN)
     # Make sure we don't miss any error
@@ -77,6 +79,8 @@ def createSmartSheet(region, siteID):
         )
         setupSheet(smart, sheet.result, region, siteID)
         msg = {"url": sheet.result.permalink}
+        # Add new link to siteLinks Table
+        addSSlinkToTable(siteGUID, siteID, sheet.result.permalink)
     else:
         sheet = smart.Sheets.get_sheet_by_name(siteID)
         msg = {"url": sheet.permalink}
@@ -86,6 +90,6 @@ def createSmartSheet(region, siteID):
 
 if __name__ == "__main__":
     print("Starting ...")
-    result = createSmartSheet("APAC", "TOK12345")
+    result = createSmartSheet("APAC", "{DFCF246B-A731-4405-8EC2-0BF91CD4E2AB}", "TOK02")
     print(result)
     print("Done")

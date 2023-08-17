@@ -1,4 +1,4 @@
-import logging
+import os
 
 import azure.functions as func
 import fastapi
@@ -10,9 +10,11 @@ import util.ss as ss
 app = fastapi.FastAPI()
 
 origins = [
+    "https://gismoapps.yondrgroup.com",
     "https://gismoappsdev.yondrgroup.com",
     "https://localhost:3001",
 ]
+SITE_URL = os.environ["SITE_URL"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -44,13 +46,11 @@ async def getGIS():
 @app.get("/getSiteInfo/{siteID}")
 async def getSiteInfo(siteID: str):
     gismo.connectToGIS()
-    lyr_url = "https://dev-gis.yondrgroup.com/hosting/rest/services/YondrData/YondrSite/MapServer/1"
-    return gismo.queryFields(lyr_url, siteID)
+    return gismo.queryFields(SITE_URL, siteID)
 
 
 @app.get("/createSmartSheet/{siteID}")
 async def createSmartSheet(siteID: str):
     gismo.connectToGIS()
-    lyr_url = "https://dev-gis.yondrgroup.com/hosting/rest/services/YondrData/YondrSite/MapServer/1"
-    data = gismo.queryFields(lyr_url, siteID)
-    return ss.createSmartSheet(data["Region"], siteID)
+    data = gismo.queryFields(SITE_URL, siteID)
+    return ss.createSmartSheet(data["Region"], data["GlobalID"], siteID)

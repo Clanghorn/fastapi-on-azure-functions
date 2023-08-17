@@ -1,6 +1,7 @@
 import logging
 import os
 
+from arcgis.features import Table
 from arcgis.features import FeatureLayer
 from arcgis.gis import GIS
 
@@ -11,6 +12,7 @@ from arcgis.gis import GIS
 PORTAL = os.environ["DEVMO_PORTAL"]
 PORTAL_USERNAME = os.environ["DEVMO_PORTAL_USERNAME"]
 PORTAL_PASSWORD = os.environ["DEVMO_PORTAL_PASSWORD"]
+SITELINKS_URL = os.environ["SITELINKS_URL"]
 
 
 def connectToGIS():
@@ -35,8 +37,25 @@ def queryFields(lyr_url, siteID, fields="GlobalID,SiteID,Region,DevManager"):
         return {"msg": "No Data"}
 
 
-def addSSlinkToTable():
-    pass
+def addSSlinkToTable(SiteGUID, SiteID, URL):
+    try:
+        feature_layer = Table(SITELINKS_URL)
+        # Create a new feature
+        new_feature = {
+            "attributes": {
+                "SiteGUID": SiteGUID,
+                "SiteID": SiteID,
+                "LinkLabel": "Dev Manager Workbook",
+                "URL": URL,
+            }
+        }
+        # Add the new feature to the feature layer
+        msg = feature_layer.edit_features(adds=[new_feature])
+        print(msg["addResults"][0])
+        print("Site Link Added for Dev Manager Workbook")
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return {"msg": "No Data"}
 
 
 # TODO
@@ -49,3 +68,4 @@ if __name__ == "__main__":
     connectToGIS()
     x = queryFields(lyr_url, siteID, fields)
     print(x)
+    addSSlinkToTable(x["GlobalID"], siteID, "BLABLBBLA")

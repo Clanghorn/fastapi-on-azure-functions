@@ -9,6 +9,8 @@
     "DEVMO_PORTAL_PASSWORD": "textiles.Busy.drift6",
     "SMARTSHEET_ACCESS_TOKEN": "WGCHUokL7LMAYmVhn6hiGcnyPLRmcB4jbPsLB",
     "DEV_MANAGER_WORKBOOK_ID": "1947854981517188",
-    "DEV_MANAGER_WORKSPACE": "5984333325461380"
+    "DEV_MANAGER_WORKSPACE": "5984333325461380",
+    "SITE_URL": "https://dev-gis.yondrgroup.com/hosting/rest/services/YondrData/YondrSite/MapServer/1",
+    "SITELINKS_URL": "https://dev-gis.yondrgroup.com/hosting/rest/services/YondrData/YondrSite/FeatureServer/10"
   }
 }
