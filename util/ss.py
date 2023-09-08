@@ -96,7 +96,7 @@ def createSmartSheet(region, siteGUID, siteID):
             smart.models.ContainerDestination(
                 {"destination_type": "workspace", "destination_id": DEV_MANAGER_WORKSPACE, "new_name": siteID}
             ),
-            include=["data"],
+            include=["rules", "data"]
         )
         setupSheet(smart, sheet.result, region, siteID)
         msg = {"url": sheet.result.permalink}
@@ -111,6 +111,6 @@ def createSmartSheet(region, siteGUID, siteID):
 
 if __name__ == "__main__":
     print("Starting ...")
-    result = createSmartSheet("APAC", "{DFCF246B-A731-4405-8EC2-0BF91CD4E2AB}", "TOK02")
+    result = createSmartSheet("APAC", "{DFCF246B-A731-4405-8EC2-0BF91CD4E2AB}", "COLIN6")
     print(result)
     print("Done")
